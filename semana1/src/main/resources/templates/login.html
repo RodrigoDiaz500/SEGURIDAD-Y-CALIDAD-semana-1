@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login de AgroMaquinaria</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Iniciar Sesión</h1>
+    
+    <form method="post" th:action="@{/login}">
+        
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <div th:if="${param.error}" class="error-message">
+            Usuario o contraseña inválidos.
+        </div>
+        
+        <button type="submit">Entrar</button>
+    </form>
+    
+    <p>¿No tienes cuenta? <a th:href="@{/registro}">Regístrate aquí</a></p>
+</body>
+</html>
