@@ -21,7 +21,7 @@ public class JwtService {
     @Value("${jwt.secret}") // Obtiene la clave del application.properties
     private String SECRET;
 
-    // 1. Generación de Token
+    // Generación de Token
     public String generateToken(String userName) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userName);
@@ -42,7 +42,7 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    // 2. Extracción y Validación
+    
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }

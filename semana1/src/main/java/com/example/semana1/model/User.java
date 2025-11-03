@@ -15,8 +15,6 @@ public class User {
     private String password; // Debe ser almacenada como BCrypt
     private String role;     // Ej: "USER", "ADMIN"
 
-    // Constructores, Getters y Setters
-    // (Generar usando tu IDE)
     
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

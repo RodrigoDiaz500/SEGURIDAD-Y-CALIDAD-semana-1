@@ -9,33 +9,33 @@ public class AppController {
     // Páginas Públicas
     @GetMapping({"/", "/home"})
     public String home() {
-        return "home"; // Muestra home.html
+        return "home"; 
     }
 
     @GetMapping("/registro")
     public String registro() {
-        return "registro"; // Muestra registro.html
+        return "registro"; 
     }
     
     @GetMapping("/busqueda")
     public String busqueda() {
-        return "busqueda"; // Muestra busqueda.html
+        return "busqueda"; 
     }
     
-    // Mapeo para la página de login (la usamos personalizada)
+    // Mapeo para la página de login 
     @GetMapping("/login")
     public String login() {
-        return "login"; // Muestra login.html
+        return "login"; 
     }
     
     // Páginas Privadas (Acceso bloqueado por SecurityConfig si no hay login)
     @GetMapping("/perfil")
     public String perfil() {
-        return "perfil"; // Muestra perfil.html
+        return "perfil"; 
     }
 
     @GetMapping("/arriendo")
     public String arriendo() {
-        return "arriendo"; // Muestra arriendo.html
+        return "arriendo";
     }
 }

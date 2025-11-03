@@ -3,18 +3,13 @@ package com.example.semana1.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/maquinaria") // Cambiado de /api/recetas
+@RequestMapping("/api/maquinaria") 
 public class MaquinariaController {
 
-    /**
-     * [Pública] API para búsqueda y listado general de maquinaria.
-     * URL: /api/maquinaria/publica
-     * No requiere JWT.
-     */
+    
     @GetMapping("/publica")
     public String getPublicMaquinaria(@RequestParam(required = false) String tipo,
                                     @RequestParam(required = false) String ubicacion) {
-        // En esta semana, la data es estática y simula la respuesta de la BD
         String response = "[\n" +
                 "  {\"id\": 101, \"nombre\": \"Tractor JD 6000\", \"tipo\": \"Tractor\", \"ubicacion\": \"Santiago\", \"precio\": 50000, \"descripcion\": \"Detalles básicos, visibles públicamente, para la búsqueda.\"},\n" +
                 "  {\"id\": 102, \"nombre\": \"Cosechadora CX\", \"tipo\": \"Cosechadora\", \"ubicacion\": \"Rancagua\", \"precio\": 80000, \"descripcion\": \"Detalles básicos, visibles públicamente, para la búsqueda.\"}\n" +
@@ -28,11 +23,7 @@ public class MaquinariaController {
         return response;
     }
 
-    /**
-     * [Privada] API para visualizar los detalles completos de la maquinaria.
-     * URL: /api/maquinaria/{id}
-     * Requiere JWT válido.
-     */
+
     @GetMapping("/{id}")
     public String getPrivateMaquinariaDetail(@PathVariable Long id) {
         // Solo se llega aquí si el Token JWT es válido.

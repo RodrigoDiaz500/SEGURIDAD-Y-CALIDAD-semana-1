@@ -18,17 +18,16 @@ public class AuthController {
     @Autowired
     private JwtService jwtService;
 
-    // API Pública: La URL debe coincidir con la configurada en SecurityConfig
     @PostMapping("/login")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         
-        // 1. Intentar Autenticar las credenciales
+        // Intentar Autenticar las credenciales
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
         );
 
         if (authentication.isAuthenticated()) {
-            // 2. Si es exitoso, generar y retornar el Token JWT
+            // Si es exitoso, generar y retornar el Token JWT
             return jwtService.generateToken(authRequest.getUsername());
         } else {
             throw new RuntimeException("Credenciales inválidas. ¡Login fallido!");
