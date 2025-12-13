@@ -26,4 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             .roles(user.getRole())       // Rol desde la DB
             .build();
     }
+
+    public Object validateUser(String string, String string2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validateUser'");
+    }
 }

@@ -3,6 +3,7 @@ package com.example.semana1.controller;
 import com.example.semana1.model.AuthRequest;
 import com.example.semana1.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,19 +19,30 @@ public class AuthController {
     @Autowired
     private JwtService jwtService;
 
-    @PostMapping("/login")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        
-        // Intentar Autenticar las credenciales
+    @PostMapping(
+    value = "/login",
+    consumes = MediaType.APPLICATION_JSON_VALUE,
+    produces = MediaType.TEXT_PLAIN_VALUE
+)
+public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+
+    try {
         Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
+            new UsernamePasswordAuthenticationToken(
+                authRequest.getUsername(),
+                authRequest.getPassword()
+            )
         );
 
         if (authentication.isAuthenticated()) {
-            // Si es exitoso, generar y retornar el Token JWT
             return jwtService.generateToken(authRequest.getUsername());
-        } else {
-            throw new RuntimeException("Credenciales inválidas. ¡Login fallido!");
         }
+
+        return "";
+
+    } catch (Exception ex) {
+        // Captura BadCredentialsException y cualquier otra
+        return "";
     }
+}
 }
