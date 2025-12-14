@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         OAuth2ResourceServerAutoConfiguration.class
     }
 )
-@AutoConfigureMockMvc(addFilters = false) // 🔥 CLAVE
+@AutoConfigureMockMvc(addFilters = false) 
 public class MaquinariaControllerTest {
 
     @Autowired

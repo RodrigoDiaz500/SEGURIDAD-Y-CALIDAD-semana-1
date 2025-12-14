@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// Solución 1: Desactivar filtros de seguridad para probar las vistas públicas
+
 @WebMvcTest(controllers = AppController.class,
     excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JwtAuthFilter.class))
 @AutoConfigureMockMvc(addFilters = false) 
@@ -24,7 +24,7 @@ public class AppControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    // Se mantienen los MockBeans para estabilizar el contexto
+    
     @MockBean
     private JwtService jwtService;
     

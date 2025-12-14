@@ -41,7 +41,7 @@ public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         return "";
 
     } catch (Exception ex) {
-        // Captura BadCredentialsException y cualquier otra
+        
         return "";
     }
 }

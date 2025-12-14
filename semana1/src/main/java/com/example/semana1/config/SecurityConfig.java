@@ -24,14 +24,14 @@ public class SecurityConfig {
                     // Protegido
                     .requestMatchers("/api/maquinaria/**").authenticated()
 
-                    // Todo lo demás (por si agregas otros endpoints)
+                    // Todo lo demás 
                     .anyRequest().permitAll()
             )
 
-            // Para permitir @WithMockUser en tests y evitar redirects
+            
             .httpBasic(httpBasic -> {})
 
-            // Opcional pero recomendado para APIs
+            
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();

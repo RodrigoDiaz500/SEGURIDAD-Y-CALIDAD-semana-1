@@ -5,12 +5,12 @@ import com.example.semana1.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration; // Nuevo Import
-import org.springframework.context.annotation.Bean; // Nuevo Import
+import org.springframework.boot.test.context.TestConfiguration; 
+import org.springframework.context.annotation.Bean; 
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // Nuevo Import
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.TestPropertySource; 
 
@@ -49,12 +49,10 @@ public class SecurityConfigTest {
 
     @Test
     void testPasswordEncoderBeanIsAvailable() {
-        // Si el contexto carga sin el error de PasswordEncoder, este test pasa.
+        
         assertNotNull(passwordEncoder, "El bean PasswordEncoder debe estar disponible en el contexto.");
     }
     
-    // FIX CLAVE: Definición explícita del PasswordEncoder para la prueba.
-    // Esto garantiza que el bean siempre estará disponible, resolviendo el UnsatisfiedDependency.
     @TestConfiguration 
     static class TestSecurityConfig {
         @Bean

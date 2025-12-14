@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public Object validateUser(String string, String string2) {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'validateUser'");
     }
 }

@@ -18,19 +18,16 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class) 
 public class UserDetailsServiceImplTest {
 
-    // FIX: Usa @Mock para crear el mock del repositorio
+
     @Mock 
     private UserRepository repository;
 
-    // FIX: Usa @InjectMocks para inyectar el mock en la instancia del servicio que se va a probar
     @InjectMocks
     private UserDetailsServiceImpl service; 
 
-    // **Nota:** Debes tener un constructor o setters en tu clase User para que esto funcione.
-    // Creamos un mock User para simular el objeto devuelto por la BD
+
     private User createMockUser(String username, String password) {
         User user = new User();
-        // Asumiendo que tienes métodos setUsername/setPassword
         user.setUsername(username);
         user.setPassword(password);
         user.setRole("USER"); 
@@ -51,7 +48,7 @@ public class UserDetailsServiceImplTest {
         verify(repository, times(1)).findByUsername(username);
     }
 
-    // FIX: Cubre la rama de excepción (UsernameNotFoundException) para alcanzar el 100%
+
     @Test
     void testLoadUserByUsername_UserNotFound() {
         String nonExistentUser = "usuario_inexistente";

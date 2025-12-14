@@ -112,7 +112,7 @@ public class JwtAuthFilterTest {
         when(request.getHeader("Authorization")).thenReturn("Bearer " + MOCK_TOKEN);
         when(jwtService.extractUsername(MOCK_TOKEN)).thenReturn(MOCK_USER);
         when(userDetailsService.loadUserByUsername(MOCK_USER)).thenReturn(userDetails);
-        when(jwtService.validateToken(MOCK_TOKEN, userDetails)).thenReturn(false); // <--- Aquí falla la validación
+        when(jwtService.validateToken(MOCK_TOKEN, userDetails)).thenReturn(false); 
 
         // Ejecutar el filtro
         jwtAuthFilter.doFilterInternal(request, response, filterChain);
@@ -158,7 +158,7 @@ void testDoFilterInternal_TokenPresentButUsernameNull() throws ServletException,
         // Cubre la rama: if (SecurityContextHolder.getContext().getAuthentication() != null)
         Authentication authentication = new UsernamePasswordAuthenticationToken(
             "authenticatedUser", null, Collections.emptyList());
-        SecurityContextHolder.getContext().setAuthentication(authentication); // Pre-autenticado
+        SecurityContextHolder.getContext().setAuthentication(authentication); 
 
         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/private");
         request.addHeader("Authorization", "Bearer token_valido");

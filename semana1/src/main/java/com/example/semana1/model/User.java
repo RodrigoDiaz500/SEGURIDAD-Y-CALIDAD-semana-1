@@ -12,8 +12,8 @@ public class User {
     
     @Column(unique = true)
     private String username; 
-    private String password; // Debe ser almacenada como BCrypt
-    private String role;     // Ej: "USER", "ADMIN"
+    private String password; 
+    private String role;     
 
     
     public Long getId() { return id; }

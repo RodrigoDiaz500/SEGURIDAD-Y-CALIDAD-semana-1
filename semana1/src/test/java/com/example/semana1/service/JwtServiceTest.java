@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class JwtServiceTest {
 
     private JwtService jwtService;
-    // La clave secreta debe coincidir con la usada en las pruebas de Controller y Config
     private final String TEST_SECRET = "EstaEsUnaClaveSecretaLargaParaPruebas1234567890ABCDEF"; 
     private final String TEST_USERNAME = "testuser";
     private UserDetails userDetails;
@@ -27,10 +26,8 @@ public class JwtServiceTest {
     @BeforeEach
     public void setUp() {
         jwtService = new JwtService();
-        // Inyecta la clave secreta manualmente (simulando @Value)
         ReflectionTestUtils.setField(jwtService, "SECRET", TEST_SECRET);
-        
-        // Crea un UserDetails de prueba para la validación
+
         userDetails = new User(TEST_USERNAME, "password", Collections.emptyList());
     }
     
@@ -65,10 +62,10 @@ public class JwtServiceTest {
         assertFalse(jwtService.validateToken(token, userDetails)); 
     }
 
-    // FIX CLAVE: Soluciona el error ExpiredJwtException
+
     @Test
     void testValidateToken_Failure_Expired() {
-        // Generar un token que expire hace 1 hora para evitar el error de tiempo de ejecución (race condition).
+        // Generar un token que expire hace 1 hora para evitar el error de tiempo de ejecución .
         long oneHourAgo = System.currentTimeMillis() - 3600000; 
         
         Key key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(TEST_SECRET));
@@ -80,8 +77,6 @@ public class JwtServiceTest {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
         
-        // AFIRMACIÓN CLAVE: Esperamos que la librería JJWT lance la excepción ExpiredJwtException
-        // porque el token está expirado, lo que correctamente simula el fallo de validación.
         assertThrows(io.jsonwebtoken.ExpiredJwtException.class, () -> {
             jwtService.validateToken(expiredToken, userDetails);
         });
